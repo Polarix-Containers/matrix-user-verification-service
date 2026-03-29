@@ -13,8 +13,8 @@ ARG GID
 ENV UVS_LISTEN_ADDRESS=0.0.0.0
 
 RUN apk -U upgrade \
-    && apk add build-base \
-    && npm update -g npm
+    && apk add build-base
+    # && npm update -g npm
 
 RUN --network=none \
     addgroup -g ${GID} uvs \
