@@ -1,3 +1,4 @@
+ARG VERSION=4.0.1
 ARG NODE=22
 ARG UID=200016
 ARG GID=200016
@@ -13,8 +14,8 @@ ARG GID
 ENV UVS_LISTEN_ADDRESS=0.0.0.0
 
 RUN apk -U upgrade \
-    && apk add build-base
-    # && npm update -g npm
+    && apk add build-base \
+    && npm update -g npm
 
 RUN --network=none \
     addgroup -g ${GID} uvs \
@@ -22,7 +23,7 @@ RUN --network=none \
 
 WORKDIR /app
 
-ADD https://github.com/matrix-org/matrix-user-verification-service.git /app
+ADD https://github.com/matrix-org/matrix-user-verification-service.git#v${VERSION} /app
 RUN npm install --only=production
 
 COPY --from=ghcr.io/polarix-containers/hardened_malloc:latest /install /usr/local/lib/
