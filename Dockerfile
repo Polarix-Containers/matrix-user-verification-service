@@ -8,6 +8,7 @@ FROM node:${NODE}-alpine
 
 LABEL maintainer="Thien Tran contact@tommytran.io"
 
+ARG VERSION
 ARG UID
 ARG GID
 
